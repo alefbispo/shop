@@ -13,11 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Product product;
     return MaterialApp(
       routes: {
         AppRoutes.PRODUCT_DETAIL: (context) => const ProductDetalPage(),
-      },
+       },
       theme: ThemeData(
           fontFamily: 'Lato',
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
