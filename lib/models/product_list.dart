@@ -28,3 +28,29 @@ class ProductList with ChangeNotifier {
     notifyListeners();
   }
 }
+// class ProductList with ChangeNotifier {
+//   final List<Product> _items = dummyProducts;
+//   bool _showFavoritesOnly = false;
+
+//   List<Product> get items {
+//     if (_showFavoritesOnly) {
+//       return _items.where((element) => element.isFavorite).toList();
+//     }
+//     return [..._items];
+//   }
+
+//   void showFavoriteOnly() {
+//     _showFavoritesOnly = true;
+//     notifyListeners();
+//   }
+
+//   void showAll() {
+//     _showFavoritesOnly = false;
+//     notifyListeners();
+//   }
+
+//   void addProduct(Product product) {
+//     _items.add(product);
+//     notifyListeners();
+//   }
+// }
