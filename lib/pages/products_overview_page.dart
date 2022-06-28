@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/components/badge.dart';
+import 'package:shop/models/cart.dart';
 
 import '../components/product_grid.dart';
 
@@ -22,29 +25,39 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
         ),
         actions: [
           PopupMenuButton(
-            onSelected: (FilterOptions value) {
-              setState(() {
-                if (value == FilterOptions.Favorite) {
-                  _showFavoriteOnly = true;
-                } else {
-                  _showFavoriteOnly = false;
-                }
-                print(_showFavoriteOnly);
-              });
-            },
-            initialValue: FilterOptions.Favorite,
-            icon: const Icon(Icons.more_vert),
-            itemBuilder: (_) => [
-              const PopupMenuItem(
-                value: FilterOptions.Favorite,
-                child: Text('Somente Favoritos'),
+              initialValue: FilterOptions.Favorite,
+              icon: const Icon(Icons.more_vert),
+              itemBuilder: (_) => [
+                    const PopupMenuItem(
+                      value: FilterOptions.Favorite,
+                      child: Text('Somente Favoritos'),
+                    ),
+                    const PopupMenuItem(
+                      value: FilterOptions.All,
+                      child: Text('Todos'),
+                    ),
+                  ],
+              onSelected: (FilterOptions value) {
+                setState(() {
+                  if (value == FilterOptions.Favorite) {
+                    _showFavoriteOnly = true;
+                  } else {
+                    _showFavoriteOnly = false;
+                  }
+                });
+              }),
+          Consumer<Cart>(
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart,
               ),
-              const PopupMenuItem(
-                value: FilterOptions.All,
-                child: Text('Todos'),
-              ),
-            ],
-          ),
+            ),
+            builder: (context, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
+          )
         ],
       ),
       body: ProductGrid(_showFavoriteOnly),
