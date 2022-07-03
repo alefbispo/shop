@@ -4,9 +4,12 @@ import 'package:shop/models/cart.dart';
 import 'package:shop/models/order_list.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/pages/cart_page.dart';
+import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/utils/app_routes.dart';
+
+import 'models/order.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,21 +27,24 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => Cart(),
-        ),ChangeNotifierProvider(
+        ),
+        ChangeNotifierProvider(
           create: (_) => OrderList(),
         )
       ],
       child: MaterialApp(
         routes: {
+          AppRoutes.HOME: (context) => const ProductOverviewPage(),
           AppRoutes.PRODUCT_DETAIL: (context) => const ProductDetalPage(),
-          AppRoutes.CART_PAGE: (context) => const CartPage(),
+          AppRoutes.CART: (context) => const CartPage(),
+          AppRoutes.ORDERS: (context) => const OrdersPage(),
         },
         theme: ThemeData(
             fontFamily: 'Lato',
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
                 .copyWith(secondary: Colors.deepOrange)),
         debugShowCheckedModeBanner: false,
-        home: const ProductOverviewPage(),
+        // home: const ProductOverviewPage(),
       ),
     );
   }
