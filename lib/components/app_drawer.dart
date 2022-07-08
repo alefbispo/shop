@@ -11,7 +11,7 @@ class AppDrawer extends StatelessWidget {
         children: [
           AppBar(
             title: const Text('Bem Vindo!'),
-            automaticallyImplyLeading: false,
+            // automaticallyImplyLeading: false,
           ),
           const Divider(),
           ListTile(
@@ -30,6 +30,16 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).popAndPushNamed(
                 AppRoutes.ORDERS,
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text('Gerenciar Produtos'),
+            onTap: () {
+              Navigator.of(context).popAndPushNamed(
+                AppRoutes.PRODUCTS,
               );
             },
           ),
