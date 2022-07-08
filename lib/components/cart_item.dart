@@ -15,12 +15,38 @@ class CartItemWidget extends StatelessWidget {
         Provider.of<Cart>(context, listen: false)
             .removeItem(cartItem.productId);
       },
+      confirmDismiss: (_) {
+        return showDialog<bool>(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              title: const Text('Tem Certeza?'),
+              content: const Text('Realmente deseza excluir?'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                    child: const Text('SIM')),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text('NÂO'))
+              ],
+            );
+          },
+        );
+      },
       key: ValueKey(cartItem.id),
       direction: DismissDirection.startToEnd,
       background: Container(
         color: Theme.of(context).errorColor,
         alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 4,
+        ),
         child: const Icon(
           Icons.delete,
           color: Colors.white,

@@ -16,6 +16,7 @@ class ProductGridItem extends StatelessWidget {
           backgroundColor: Colors.black54,
           trailing: IconButton(
             onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: const Text('Produto adicionado com sucesso!'),
