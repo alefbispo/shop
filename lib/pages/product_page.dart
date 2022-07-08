@@ -12,7 +12,7 @@ class ProductsPage extends StatelessWidget {
     final ProductList products = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gerenciar Produtos'),
+        title: const Center(child: Text('Gerenciar Produtos')),
       ),
       drawer: const AppDrawer(),
       body: Padding(
