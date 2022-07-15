@@ -41,7 +41,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
   }
 
   void _submitForm() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (!isValid) {
+      return;
+    }
+
     _formKey.currentState?.save();
+
     final newProduct = Product(
       id: Random().nextDouble().toString(),
       name: _formData['name'].toString(),
@@ -80,6 +87,18 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (name) => _formData['name'] = name ?? '-',
+                validator: (name) {
+                  final nome = name ?? '';
+
+                  if (nome.trim().isEmpty) {
+                    return 'Nome é obrigatório!';
+                  }
+                  if (nome.trim().length < 3) {
+                    return 'Nome muito curto!';
+                  }
+
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Preço'),
