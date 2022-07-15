@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:shop/models/product.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/product_list.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({Key? key}) : super(key: key);
@@ -59,17 +58,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
     _formKey.currentState?.save();
 
-    final newProduct = Product(
-      id: Random().nextDouble().toString(),
-      name: _formData['name'].toString(),
-      description: _formData['description'].toString(),
-      imageUrl: _formData['imageUrl'].toString(),
-      price: _formData['price'] as double,
-    );
-
-    print(newProduct.id);
-    print(newProduct.name);
-    print(newProduct.price);
+    Provider.of<ProductList>(context, listen: false).saveProduct(_formData);
+    Navigator.of(context).pop();
   }
 
   @override
