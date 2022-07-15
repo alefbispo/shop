@@ -16,6 +16,8 @@ class ProductList with ChangeNotifier {
   }
 
   void saveProduct(Map<String, Object> data) {
+    bool hasId = data['id'] != null;
+
     final newProduct = Product(
         id: Random().nextDouble().toString(),
         name: data['name'].toString(),
