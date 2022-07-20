@@ -3,13 +3,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop/data/dummy_data.dart';
 import 'package:shop/models/product.dart';
 
 class ProductList with ChangeNotifier {
-  final _baseUrl = 'https://shop-curso-dd940-default-rtdb.firebaseio.com';
+  final _url =
+      'https://shop-curso-dd940-default-rtdb.firebaseio.com/products.json';
 
-  final List<Product> _items = dummyProducts;
+  final List<Product> _items = [];
 
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
@@ -36,9 +36,33 @@ class ProductList with ChangeNotifier {
     }
   }
 
+  Future<void> loadProducts() async {
+    final response = await http.get(Uri.parse(_url));
+
+    if (response.body == 'null') return;
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    data.forEach(
+      (productId, productData) {
+        _items.add(
+          Product(
+            id: productId,
+            name: productData['name'],
+            description: productData['description'],
+            imageUrl: productData['imageUrl'],
+            price: productData['price'],
+            isFavorite: productData['isFavorite'],
+          ),
+        );
+      },
+    );
+    notifyListeners();
+  }
+
   Future<void> addProduct(Product product) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/products.json'),
+      Uri.parse(_url),
       body: jsonEncode(
         {
           'name': product.name,
