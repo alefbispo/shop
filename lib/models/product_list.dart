@@ -78,16 +78,14 @@ class ProductList with ChangeNotifier {
     );
 
     final id = jsonDecode(response.body)['name'];
-    _items.add(
-      Product(
-        id: id,
-        name: product.name,
-        description: product.description,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        isFavorite: product.isFavorite,
-      ),
-    );
+    _items.add(Product(
+      id: id,
+      name: product.name,
+      description: product.description,
+      imageUrl: product.imageUrl,
+      price: product.price,
+      isFavorite: product.isFavorite,
+    ),);
     notifyListeners();
   }
 
