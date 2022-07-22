@@ -4,8 +4,24 @@ import 'package:shop/components/app_drawer.dart';
 import 'package:shop/components/order_widget.dart';
 import 'package:shop/models/order_list.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends StatefulWidget {
   const OrdersPage({Key? key}) : super(key: key);
+
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<OrderList>(
+      context,
+      listen: false,
+    ).loadOrders().then((value) => _isLoading = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +31,15 @@ class OrdersPage extends StatelessWidget {
         title: const Text('Meus Pedidos'),
       ),
       drawer: const AppDrawer(),
-      body: ListView.builder(
-        itemCount: orders.itemsCount,
-        itemBuilder: (context, index) {
-          final compra = orders.items[index];
-          return OrderWidget(order: compra);
-        },
-      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: orders.itemsCount,
+              itemBuilder: (context, index) {
+                final compra = orders.items[index];
+                return OrderWidget(order: compra);
+              },
+            ),
     );
   }
 }
