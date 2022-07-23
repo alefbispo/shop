@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.HOME: (context) => const ProductOverviewPage(),
           AppRoutes.PRODUCT_DETAIL: (context) => const ProductDetalPage(),
           AppRoutes.CART: (context) => const CartPage(),
-          AppRoutes.ORDERS: (context) => const OrdersPage(),
+          AppRoutes.ORDERS: (context) => OrdersPage(),
           AppRoutes.PRODUCTS: (context) => const ProductsPage(),
           AppRoutes.PRODUCT_FORM: (context) => const ProductFormPage(),
         },
