@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/exceptions/auth_exception.dart';
 
 import '../models/auth.dart';
 
@@ -48,18 +49,39 @@ class _AuthFormState extends State<AuthForm> {
 
     Auth auth = Provider.of(context, listen: false);
 
-    if (_isLogin()) {
-      // Login
-      await auth.login(
-        _authData['email']!,
-        _authData['password']!,
+    void _showErrosDialog(String msg) {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Erro!'),
+          content: Text(msg),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Ok'))
+          ],
+        ),
       );
-    } else {
-      // Registrar
-      await auth.signup(
-        _authData['email']!,
-        _authData['password']!,
-      );
+    }
+
+    try {
+      if (_isLogin()) {
+        // Login
+        await auth.login(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      } else {
+        // Registrar
+        await auth.signup(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      }
+    } on AuthException catch (error) {
+      _showErrosDialog(error.toString());
+    } catch (error) {
+      _showErrosDialog('Erro inesperado.');
     }
 
     setState(() => _isLoading = false);
