@@ -8,11 +8,15 @@ import 'package:shop/models/product.dart';
 import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
-  final List<Product> _items = [];
+   String _token;
+
+   List<Product> _items = [];
 
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
       _items.where((element) => element.isFavorite).toList();
+
+  ProductList(this._token, this._items);
 
   int get intemsCount {
     return _items.length;
@@ -39,7 +43,7 @@ class ProductList with ChangeNotifier {
     _items.clear();
 
     final response = await http.get(
-      Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.PRODUCT_BASE_URL}.json?auth=$_token'),
     );
 
     if (response.body == 'null') return;
@@ -78,14 +82,16 @@ class ProductList with ChangeNotifier {
     );
 
     final id = jsonDecode(response.body)['name'];
-    _items.add(Product(
-      id: id,
-      name: product.name,
-      description: product.description,
-      imageUrl: product.imageUrl,
-      price: product.price,
-      isFavorite: product.isFavorite,
-    ),);
+    _items.add(
+      Product(
+        id: id,
+        name: product.name,
+        description: product.description,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        isFavorite: product.isFavorite,
+      ),
+    );
     notifyListeners();
   }
 
