@@ -34,6 +34,13 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
     });
   }
 
+  Future<void> _refreshProducts(BuildContext context) {
+    return Provider.of<ProductList>(
+      context,
+      listen: false,
+    ).loadProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +91,9 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : ProductGrid(_showFavoriteOnly),
+          : RefreshIndicator(
+              onRefresh: () => _refreshProducts(context),
+              child: ProductGrid(_showFavoriteOnly)),
       drawer: const AppDrawer(),
     );
   }

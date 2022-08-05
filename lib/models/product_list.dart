@@ -45,9 +45,12 @@ class ProductList with ChangeNotifier {
     }
   }
 
-  Future<void> loadProducts() async {
+  void itemClear() {
     _items.clear();
+  }
 
+  Future<void> loadProducts() async {
+    itemClear();
     final response = await http.get(
       Uri.parse('${Constants.PRODUCT_BASE_URL}.json?auth=$_token'),
     );
