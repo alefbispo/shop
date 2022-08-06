@@ -13,13 +13,49 @@ class AuthForm extends StatefulWidget {
   State<AuthForm> createState() => _AuthFormState();
 }
 
-class _AuthFormState extends State<AuthForm> {
+class _AuthFormState extends State<AuthForm>
+    with SingleTickerProviderStateMixin {
   AuthMode _authMode = AuthMode.Login;
 
   final Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
+
+  AnimationController? _controller;
+  Animation<Size>? _heightAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 300,
+      ),
+    );
+    _heightAnimation = Tween(
+      begin: const Size(double.infinity, 310),
+      end: const Size(double.infinity, 400),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller!,
+        curve: Curves.linear,
+      ),
+    );
+
+    _heightAnimation?.addListener(
+      () => setState(
+        () {},
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller?.dispose();
+  }
 
   bool _isLogin() => _authMode == AuthMode.Login;
   bool _isSingup() => _authMode == AuthMode.Singup;
@@ -32,8 +68,10 @@ class _AuthFormState extends State<AuthForm> {
     setState(() {
       if (_isLogin()) {
         _authMode = AuthMode.Singup;
+        _controller?.forward();
       } else {
         _authMode = AuthMode.Login;
+        _controller?.reverse();
       }
     });
   }
@@ -99,8 +137,10 @@ class _AuthFormState extends State<AuthForm> {
       child: Container(
         padding: const EdgeInsets.all(16),
         width: deviceSize.width * 0.75,
-        height:
-            _isLogin() ? deviceSize.height * 0.45 : deviceSize.height * 0.55,
+        height: _heightAnimation?.value.height ??
+            (_isLogin() ? deviceSize.height * 0.55 : deviceSize.height * 0.45),
+        // height:
+        //     _isLogin() ? deviceSize.height * 0.45 : deviceSize.height * 0.55,
         child: Form(
           key: _formKey,
           child: Column(
