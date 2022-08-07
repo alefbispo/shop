@@ -43,7 +43,7 @@ class _OrderWidgetState extends State<OrderWidget> {
               ),
             ),
             AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const  Duration(milliseconds: 300),
               height: _expanded ? itemsHeight : 0,
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,

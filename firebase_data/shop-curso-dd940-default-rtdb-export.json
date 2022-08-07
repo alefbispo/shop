@@ -1,0 +1,207 @@
+{
+  "orders": {
+    "BdkAmW661SZzu5z4FkadTcbtVxL2": {
+      "-N8fkrQEppoPx9mkzsnm": {
+        "date": "2022-08-04T23:09:10.189695",
+        "products": [
+          {
+            "id": "0.3103560732825944",
+            "name": "Jerry",
+            "price": 20,
+            "productId": "-N8fMiOCh2QcNvC7zcqa",
+            "quantity": 1
+          }
+        ],
+        "total": 20
+      },
+      "-N8fkuyNBWz81N29r1o9": {
+        "date": "2022-08-04T23:09:24.766587",
+        "products": [
+          {
+            "id": "0.6194633530863826",
+            "name": "Morty ",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 1
+          }
+        ],
+        "total": 500
+      }
+    },
+    "C8RbwmyPpXUI9irWpfRsIDMB6qa2": {
+      "-N8g--fTd4USMBDoldWU": {
+        "date": "2022-08-05T00:18:38.154845",
+        "products": [
+          {
+            "id": "0.21461782052790201",
+            "name": "Morty ",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 1
+          }
+        ],
+        "total": 500
+      },
+      "-N8g-1OKYeB4WD8KwuJ9": {
+        "date": "2022-08-05T00:18:45.215126",
+        "products": [
+          {
+            "id": "0.24992183010057756",
+            "name": "Rick",
+            "price": 666,
+            "productId": "-N8fM3UkkJebrTaNJn0Y",
+            "quantity": 1
+          }
+        ],
+        "total": 666
+      },
+      "-N8g1DUMd4GBnWsRm1W4": {
+        "date": "2022-08-05T00:28:18.991363",
+        "products": [
+          {
+            "id": "0.36340659754797466",
+            "name": "Jerry",
+            "price": 20,
+            "productId": "-N8fMiOCh2QcNvC7zcqa",
+            "quantity": 4
+          },
+          {
+            "id": "0.456756441987877",
+            "name": "Morty ",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 5
+          },
+          {
+            "id": "0.653375652316115",
+            "name": "Rick",
+            "price": 666,
+            "productId": "-N8fM3UkkJebrTaNJn0Y",
+            "quantity": 4
+          }
+        ],
+        "total": 5244
+      },
+      "-N8g1GEhvRBaTJc-K__J": {
+        "date": "2022-08-05T00:28:30.196560",
+        "products": [
+          {
+            "id": "0.41194139205771696",
+            "name": "Rick",
+            "price": 666,
+            "productId": "-N8fM3UkkJebrTaNJn0Y",
+            "quantity": 4
+          },
+          {
+            "id": "0.44625715163514346",
+            "name": "Morty ",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 2
+          }
+        ],
+        "total": 3664
+      }
+    },
+    "jUlUGkkoTTefG8lfJWjH8nP7JHI3": {
+      "-N8fLk2RNyZUmvlFfo2I": {
+        "date": "2022-08-04T21:15:02.047828",
+        "products": [
+          {
+            "id": "0.01919951036575651",
+            "name": "Morty Notinho",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 1
+          }
+        ],
+        "total": 500
+      },
+      "-N8fMnzFVMqfkgs6YA1U": {
+        "date": "2022-08-04T21:19:40.166065",
+        "products": [
+          {
+            "id": "0.37820152971369925",
+            "name": "Rick",
+            "price": 666,
+            "productId": "-N8fM3UkkJebrTaNJn0Y",
+            "quantity": 2
+          },
+          {
+            "id": "0.8070446599208783",
+            "name": "Morty Notinho",
+            "price": 500,
+            "productId": "-N8fLhZIeSZM70sFvHVC",
+            "quantity": 1
+          },
+          {
+            "id": "0.46713234560929473",
+            "name": "Jerry",
+            "price": 20,
+            "productId": "-N8fMiOCh2QcNvC7zcqa",
+            "quantity": 1
+          }
+        ],
+        "total": 1852
+      },
+      "-N8fndXdXt8AKb99PKUm": {
+        "date": "2022-08-04T23:21:17.450020",
+        "products": [
+          {
+            "id": "0.38919044164874916",
+            "name": "TRAAAAB",
+            "price": 6.2,
+            "productId": "-N8fkR3AIY8qHd-sa-U1",
+            "quantity": 1
+          }
+        ],
+        "total": 6.2
+      },
+      "-N8fqN0bHEGthmBqlpeZ": {
+        "date": "2022-08-04T23:34:11.465221",
+        "products": [
+          {
+            "id": "0.6299207753975951",
+            "name": "Jerry",
+            "price": 20,
+            "productId": "-N8fMiOCh2QcNvC7zcqa",
+            "quantity": 1
+          }
+        ],
+        "total": 20
+      }
+    }
+  },
+  "products": {
+    "-N8fLhZIeSZM70sFvHVC": {
+      "description": "Morty novinho para novas aventuras",
+      "imageUrl": "https://img1.gratispng.com/20180806/buw/kisspng-snout-clip-art-sticker-forehead-sticker-telegram-snout-clip-art-others-512-512-t-5b690d715ca0b6.2013967715336113773794.jpg",
+      "name": "Morty ",
+      "price": 500
+    },
+    "-N8fM3UkkJebrTaNJn0Y": {
+      "description": "Rickdiculamente Rick",
+      "imageUrl": "https://imagensemoldes.com.br/wp-content/uploads/2021/04/Ilustracao-Rick-and-Morty-PNG.png",
+      "name": "Rick",
+      "price": 666
+    },
+    "-N8fMiOCh2QcNvC7zcqa": {
+      "description": "Vai mesmo comprar isso?",
+      "imageUrl": "https://www.pngitem.com/pimgs/m/26-261780_jerry-png-jerry-rick-and-morty-png-transparent.png",
+      "name": "Jerry",
+      "price": 20
+    }
+  },
+  "userFavorites": {
+    "C8RbwmyPpXUI9irWpfRsIDMB6qa2": {
+      "-N8fM3UkkJebrTaNJn0Y": true
+    },
+    "CRWj3R1NxkZuSqwCUhN1iuEOMUs2": {
+      "-N8fMiOCh2QcNvC7zcqa": true
+    },
+    "jUlUGkkoTTefG8lfJWjH8nP7JHI3": {
+      "-N8fLhZIeSZM70sFvHVC": true,
+      "-N8fM3UkkJebrTaNJn0Y": true
+    }
+  }
+}
