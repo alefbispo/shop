@@ -24,16 +24,20 @@ class _AuthFormState extends State<AuthForm>
 
   AnimationController? _controller;
   Animation<Size>? _heightAnimation;
+  Animation<double>? _opacityAnimation;
+  Animation<Offset>? _slideAnimation;
 
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: 300,
       ),
     );
+
     _heightAnimation = Tween(
       begin: const Size(double.infinity, 310),
       end: const Size(double.infinity, 400),
@@ -44,11 +48,27 @@ class _AuthFormState extends State<AuthForm>
       ),
     );
 
-    _heightAnimation?.addListener(
-      () => setState(
-        () {},
+    _opacityAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller!,
+        curve: Curves.linear,
       ),
     );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, -1.5),
+      end: const Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller!,
+        curve: Curves.linear,
+      ),
+    );
+
+    _heightAnimation?.addListener(() => setState(() {}));
   }
 
   @override
@@ -58,7 +78,7 @@ class _AuthFormState extends State<AuthForm>
   }
 
   bool _isLogin() => _authMode == AuthMode.Login;
-  bool _isSingup() => _authMode == AuthMode.Singup;
+  // bool _isSingup() => _authMode == AuthMode.Singup;
 
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -134,13 +154,14 @@ class _AuthFormState extends State<AuthForm>
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(microseconds: 300),
+        curve: Curves.easeIn,
         padding: const EdgeInsets.all(16),
         width: deviceSize.width * 0.75,
         height: _heightAnimation?.value.height ??
             (_isLogin() ? deviceSize.height * 0.55 : deviceSize.height * 0.45),
-        // height:
-        //     _isLogin() ? deviceSize.height * 0.45 : deviceSize.height * 0.55,
+        // height: _isLogin() ? 310 : 400,
         child: Form(
           key: _formKey,
           child: Column(
@@ -171,21 +192,34 @@ class _AuthFormState extends State<AuthForm>
                 },
                 onSaved: (password) => _authData['password'] = password ?? '',
               ),
-              if (_isSingup())
-                TextFormField(
-                  decoration:
-                      const InputDecoration(labelText: 'Confirmar senha'),
-                  obscureText: true,
-                  validator: _isLogin()
-                      ? null
-                      : (passwordConfirmation) {
-                          final password = passwordConfirmation ?? '';
-                          if (password != _passwordController.text) {
-                            return 'Senhas diferentes.';
-                          }
-                          return null;
-                        },
+              AnimatedContainer(
+                constraints: BoxConstraints(
+                  minHeight: _isLogin() ? 0 : 60,
+                  maxHeight: _isLogin() ? 0 : 120,
                 ),
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.linear,
+                child: SlideTransition(
+                  position: _slideAnimation!,
+                  child: FadeTransition(
+                    opacity: _opacityAnimation!,
+                    child: TextFormField(
+                      decoration:
+                          const InputDecoration(labelText: 'Confirmar senha'),
+                      obscureText: true,
+                      validator: _isLogin()
+                          ? null
+                          : (passwordConfirmation) {
+                              final password = passwordConfirmation ?? '';
+                              if (password != _passwordController.text) {
+                                return 'Senhas diferentes.';
+                              }
+                              return null;
+                            },
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 20),
               if (_isLoading)
                 const CircularProgressIndicator()
